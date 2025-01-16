@@ -1,0 +1,54 @@
+/* header.module.css */
+.header {
+  @apply bg-white shadow-md sticky top-0 z-50;
+}
+
+.headerContainer {
+  max-width: 1200px; /* Tailwind's container default */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* Tailwind's default `px-4` */
+  padding-right: 1rem; /* Tailwind's default `px-4` */
+  @apply flex items-center justify-between;
+}
+
+/* Other styles */
+.logo {
+  @apply text-2xl font-bold text-gray-800;
+}
+
+.navLinks {
+  @apply hidden md:flex space-x-6;
+}
+
+.navLink {
+  @apply text-gray-600 hover:text-gray-900;
+}
+
+.iconContainer {
+  @apply flex items-center space-x-4;
+}
+
+.menuButton {
+  @apply md:hidden text-gray-600 hover:text-gray-900;
+}
+
+/* Search Bar Container */
+.searchBarContainer {
+  @apply flex items-center border rounded-md overflow-hidden;
+  width: 100%;
+  max-width: 400px; /* Adjust width as needed */
+}
+
+/* Search Input */
+.searchInput {
+  @apply flex-grow px-4 py-2 text-gray-700 focus:outline-none;
+}
+
+/* Search Button */
+.searchButton {
+  @apply bg-gray-200 p-2 hover:bg-gray-300 transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
