@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Layout from "./Layout"
-import { td } from "framer-motion/client"
+
 
 export default function Order(){
   const[orders,setOrders] = useState([   

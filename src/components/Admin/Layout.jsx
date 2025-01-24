@@ -5,8 +5,9 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaTruckRampBox } from "react-icons/fa6";
 import { TbReportMoney } from "react-icons/tb";
 import { Link, useLocation } from "react-router-dom";
-
-
+import { VscDashboard } from "react-icons/vsc";
+import { IoIosSettings } from "react-icons/io";
+import { AiOutlineLogout } from "react-icons/ai";
 
 export default function Layout({children}) {
   const location = useLocation();
@@ -16,8 +17,8 @@ export default function Layout({children}) {
  const [menu,setMenu] = useState([
   {
     label : 'Dashboard',
-    icon : <TbReportMoney/>,
-    link : '/admin/payment'
+    icon : <VscDashboard />,
+    link : '/admin/dashboard'
    },{
   label: 'Products',
   link: '/admin/products',
@@ -35,22 +36,22 @@ export default function Layout({children}) {
   link : '/admin/payment'
  }, {
   label : 'Settings',
-  icon : <TbReportMoney/>,
-  link : '/admin/payment'
+  icon : <IoIosSettings />,
+  link : '/admin/settings'
  },
  {
   label : 'Logout',
-  icon : <TbReportMoney/>,
-  link : '/admin/payment'
+  icon : <AiOutlineLogout/>,
+  link : '/'
  }])
   return (
     <>
       <div className="flex min-h-screen ">
         <div
-          className="bg-white overflow-hidden"
+          className="bg-white overflow-hidden "
           style={{ width: size, transition: "0.1s" }}
         >
-          <div className="p-9 bg-black text-white text-center">Your Menu </div> 
+          <div className="p-9 bg-black text-white text-center ">Your Menu </div> 
           {menu.map((itm,indx)=>(
              <div key={indx} className={`m-3 justify-items-center border-2 p-2 border-black rounded-md text-center hover:bg-slate-300
              ${itm.link === location.pathname ? 'bg-slate-300' : 'bg-slate-50'}
@@ -64,7 +65,7 @@ export default function Layout({children}) {
         
         
         </div>
-        <div className="w-full flex gap-2 ">
+        <div className="w-full  flex  gap-2  ">
           <div className="w-full">
             <nav className="w-full bg-white flex justify-between p-6  items-center shadow-lg">
               <button
