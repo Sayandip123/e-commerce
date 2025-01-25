@@ -1,46 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import { IoTrashBin } from "react-icons/io5";
 import { BsFillBagCheckFill } from "react-icons/bs";
+import firbaseConfigapp from "../../util/firebase-config";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDocs, getFirestore,collection,query,where } from "firebase/firestore";
+const auth = getAuth(firbaseConfigapp)
+const db = getFirestore(firbaseConfigapp)
 export default function Cart() {
-  const [cart, setCart] = useState([
-    {
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },{
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },{
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },{
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },{
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },{
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },{
-      title: "Iphone X",
-      price: 40000,
-      discount: 10,
-      img: "/Products/d.jpg",
-    },
-  ]);
+ 
+  const [session,setSession] = useState(null)
+  const [cart, setCart] = useState([]);
+  useEffect(()=>{
+
+    onAuthStateChanged(auth,(user)=>{
+      if(user){
+        setSession(user)
+      }
+      else
+     {
+       setSession(false) 
+    }
+    })
+  },[])
+
+  useEffect( ()=>{
+    const  req = async()=>{
+      if(session){
+        const data = collection(db , 'carts')
+        const q = query(data ,where('userId','==',session.uid))
+        const snap = await getDocs(q)
+        const tmp = []
+        snap.forEach((doc)=>{
+          const docs = doc.data()
+          tmp.push(docs)
+        })
+        setCart(tmp)
+        }
+
+    }
+    req()
+
+  },[session])
   return (
     <>
       <Layout>

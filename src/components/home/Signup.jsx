@@ -3,7 +3,7 @@ import { FaRegEyeSlash } from "react-icons/fa6";
 import { useState } from "react";
 import { Link, Router, useNavigate } from "react-router-dom";
 import firbaseConfigapp from "../../util/firebase-config";
-import { getAuth,createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth,createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const Auth = getAuth(firbaseConfigapp)
 export default function Signup(){
@@ -21,6 +21,10 @@ async function onSubmit(e){
     e.preventDefault();
     setLoader(true)
       await createUserWithEmailAndPassword(Auth,value.Email,value.Password)
+     await updateProfile(Auth.currentUser, {
+      displayName: value.Name
+    })
+     
       navigate('/')
     
   } catch (err) {

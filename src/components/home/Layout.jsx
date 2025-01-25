@@ -28,6 +28,7 @@ useEffect (()=> {
   });
 
 },[])
+console.log(session)
 
 if (session === null){
   return( <div className="flex h-screen justify-center items-center">

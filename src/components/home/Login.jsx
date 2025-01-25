@@ -49,7 +49,8 @@ export default function Login(){
         <div className="m-5 w-full rounded-md border-2 p-2 text-center justify-self-center mx-1 items-center justify-items-center flex flex-col">
 
         
-          
+       
+
         <label>E-Mail
           <input onChange={Inp} name="Email" className="focus:outline-none focus:ring-2 focus:ring-indigo-600 border-2 rounded-sm  px-2 m-2" type="text"placeholder="Enter E-Mail " />
         </label> <br />
